@@ -1,13 +1,22 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Form Submission</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<h2>Submit Data</h2>
+<form action="form_handling_servlet" method="post">
+    <label>
+        <input type="text" name="data" required />
+    </label>
+    <input type="submit" value="Submit" />
+</form>
+<% if (request.getParameter("error") != null) { %>
+<p style="color:red;"><%= request.getParameter("error") %></p>
+<% } %>
+<% if (request.getParameter("success") != null) { %>
+<p style="color:green;"><%= request.getParameter("success")
+%></p>
+<% } %>
 </body>
 </html>
