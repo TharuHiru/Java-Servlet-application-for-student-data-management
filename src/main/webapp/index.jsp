@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Form Submission</title>
+    <title>Student information form</title>
 </head>
 <body>
 <h2>Submit Data</h2>
@@ -11,6 +11,7 @@
     </label>
     <input type="submit" value="Submit" />
 </form>
+<h3><a href="form_handling_servlet">View Submitted Data</a></h3>
 <% if (request.getParameter("error") != null) { %>
 <p style="color:red;"><%= request.getParameter("error") %></p>
 <% } %>
