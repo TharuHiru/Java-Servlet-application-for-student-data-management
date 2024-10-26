@@ -1,0 +1,52 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background: url("back.png") no-repeat center center fixed;
+    background-size: cover;
+    color: #333;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.button-container {
+    padding:30px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.9);
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+
+.button-container button {
+    padding: 10px 20px;
+    font-size: 30px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 400px;
+    text-align: left;
+}
+
+.button-container h1 {
+    color: #102510;
+    font-size: 40px;
+    margin: 0;
+}
+
+
+.button-container hr {
+    width: 100%;
+    border: 1px solid #45a049;
+}
+
+.button-container button:hover {
+    background-color: #1c451c;
+}

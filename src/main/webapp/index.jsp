@@ -1,23 +1,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Student information form</title>
+    <title>Student Information Form</title>
+    <link rel="stylesheet" href="Styles/MainPage.css">
 </head>
 <body>
-<h2>Submit Data</h2>
-<form action="form_handling_servlet" method="post">
-    <label>
-        <input type="text" name="data" required />
-    </label>
-    <input type="submit" value="Submit" />
-</form>
-<h3><a href="form_handling_servlet">View Submitted Data</a></h3>
-<% if (request.getParameter("error") != null) { %>
-<p style="color:red;"><%= request.getParameter("error") %></p>
-<% } %>
-<% if (request.getParameter("success") != null) { %>
-<p style="color:green;"><%= request.getParameter("success")
-%></p>
-<% } %>
+<div class="navbar">
+    <!-- Navbar content here -->
+</div>
+
+<div class="button-container">
+    <h1>Student Data management System</h1>
+    <hr >
+    <button onclick="window.location.href='home.jsp'">Home</button>
+    <button onclick="window.location.href='SubmitData.jsp'">Submit Data</button>
+    <button onclick="window.location.href='view_data.jsp'">View Data</button>
+</div>
 </body>
 </html>
