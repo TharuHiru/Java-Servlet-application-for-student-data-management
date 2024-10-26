@@ -10,11 +10,10 @@
 </div>
 
 <div class="button-container">
-    <h1>Student Data management System</h1>
+    <h1>Student Data <br>management System</h1>
     <hr >
-    <button onclick="window.location.href='home.jsp'">Home</button>
     <button onclick="window.location.href='SubmitData.jsp'">Submit Data</button>
-    <button onclick="window.location.href='view_data.jsp'">View Data</button>
+    <button onclick="window.location.href='view_data.jsp'">Edit and view</button>
 </div>
 </body>
 </html>

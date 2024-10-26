@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #2222b1;
-    color: #333;
+    background-color: #dad5d5;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,18 +18,22 @@ body {
 }
 
 h2 {
-    color: #4CAF50;
+    color: #102510;
     text-align: center;
     margin-bottom: 20px;
 }
-
+.gender-options {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically (if needed) */
+    margin: 10px 0; /* Add some margin above and below */
+}
 label {
-    display: block;
     font-weight: bold;
     margin-top: 10px;
 }
 
-input[type="text"], input[type="submit"] {
+input[type="text"], input[type="submit"], input[type="date"]  {
     width: 100%;
     padding: 8px;
     margin: 8px 0 16px 0;
@@ -47,7 +51,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #102510;
 }
 
 .message {

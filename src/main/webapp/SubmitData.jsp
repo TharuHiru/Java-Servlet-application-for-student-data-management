@@ -14,8 +14,20 @@
     <label for="name">Name</label>
     <input type="text" id="name" name="name" required />
 
+    <label>Gender:</label>
+    <br><br>
+<div style=" display: flex;
+    justify-content: center;
+    align-items: center">
+      <label for="male" style="font-weight: normal">Male</label>
+      <input type="radio" id="male" name="gender" value="male">
+
+      <label for="female" style="font-weight: normal">Female</label>
+      <input type="radio" id="female" name="gender" value="female">
+</div>
+
     <label for="dateOfBirth">Date of Birth</label>
-    <input type="text" id="dateOfBirth" name="DateOfBirth" required />
+    <input type="date" id="dateOfBirth" name="dateOfBirth" required />
 
     <label for="address">Address</label>
     <input type="text" id="address" name="address" required />
