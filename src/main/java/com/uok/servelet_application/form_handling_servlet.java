@@ -27,20 +27,34 @@ public class form_handling_servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String userData = request.getParameter("data");
+        String id = String.valueOf(new Date().getTime());
+        String name = request.getParameter("name");
+        String gender = request.getParameter("gender");
+        String dateofBirth = request.getParameter("dateOfBirth");
+        String year = request.getParameter("year");
+        String address = request.getParameter("address");
+        String email = request.getParameter("email");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String grade = request.getParameter("grade");
 
-        if (userData == null || userData.isEmpty()) {
-            response.sendRedirect("index.jsp?error=Invalid input");
+        if (name == null || name.isEmpty() ||
+                gender == null || gender.isEmpty() ||
+                dateofBirth == null || dateofBirth.isEmpty() ||
+                year == null || year.isEmpty() ||
+                address == null || address.isEmpty() ||
+                email == null || email.isEmpty() ||
+                phoneNumber == null || phoneNumber.isEmpty() ||
+                grade == null || grade.isEmpty()) {
+
+            response.sendRedirect("index.jsp?error=Invalid input. Please fill all fields.");
             return;
         }
-
-        String id = String.valueOf(new Date().getTime());
 
         // Use getServletContext().getRealPath() to get the actual path for the XML file
         String xmlFilePath = getServletContext().getRealPath("/WEB-INF/data.xml");
         System.out.println("XML File Path: " + xmlFilePath);
 
-        XMLHandler.saveDataToXML(id, userData, xmlFilePath); // Update method to accept the path
+        XMLHandler.saveDataToXML(id, name,gender,dateofBirth,year,address,email,phoneNumber,gender,xmlFilePath); // Update method to accept the path
 
         // Redirect to a success page
         response.sendRedirect("index.jsp?success=Data submitted");

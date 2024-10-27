@@ -5,7 +5,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     margin: 0;
 }
 
@@ -21,6 +20,7 @@ h2 {
     color: #102510;
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 .gender-options {
     display: flex; /* Use flexbox for alignment */
@@ -33,7 +33,19 @@ label {
     margin-top: 10px;
 }
 
-input[type="text"], input[type="submit"], input[type="date"]  {
+input[type="text"],
+input[type="submit"],
+input[type="date"]
+{
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 16px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#email, #phoneNumber , #year{
     width: 100%;
     padding: 8px;
     margin: 8px 0 16px 0;
