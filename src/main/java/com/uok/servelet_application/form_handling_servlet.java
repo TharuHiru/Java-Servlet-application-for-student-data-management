@@ -37,6 +37,7 @@ public class form_handling_servlet extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         String grade = request.getParameter("grade");
 
+        // Validate input fields
         if (name == null || name.isEmpty() ||
                 gender == null || gender.isEmpty() ||
                 dateofBirth == null || dateofBirth.isEmpty() ||
@@ -50,11 +51,15 @@ public class form_handling_servlet extends HttpServlet {
             return;
         }
 
+        // Create a new Student object
+        Student student = new Student(id, name, gender, dateofBirth, year, address, email, phoneNumber, grade);
+
         // Use getServletContext().getRealPath() to get the actual path for the XML file
         String xmlFilePath = getServletContext().getRealPath("/WEB-INF/data.xml");
         System.out.println("XML File Path: " + xmlFilePath);
 
-        XMLHandler.saveDataToXML(id, name,gender,dateofBirth,year,address,email,phoneNumber,gender,xmlFilePath); // Update method to accept the path
+        // Save student data to XML
+        XMLHandler.saveDataToXML(student, xmlFilePath); // Update method to accept the Student object
 
         // Redirect to a success page
         response.sendRedirect("index.jsp?success=Data submitted");
@@ -68,28 +73,24 @@ public class form_handling_servlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
-            // Prepare XML document
             File xmlFile = new File(xmlFilePath);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
             document.getDocumentElement().normalize();
 
-            // Get all <entry> elements
+
             NodeList entries = document.getElementsByTagName("entry");
 
-            // Start HTML table to display the data
             out.println("<html><body>");
             out.println("<h2>Submitted Data</h2>");
             out.println("<table border='1'><tr><th>ID</th><th>Data</th></tr>");
 
-            // Loop through the <entry> elements and extract <id> and <data>
             for (int i = 0; i < entries.getLength(); i++) {
                 Element entry = (Element) entries.item(i);
                 String id = entry.getElementsByTagName("id").item(0).getTextContent();
                 String data = entry.getElementsByTagName("data").item(0).getTextContent();
 
-                // Add rows to table
                 out.println("<tr><td>" + id + "</td><td>" + data + "</td></tr>");
             }
 
