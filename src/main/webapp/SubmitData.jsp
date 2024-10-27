@@ -52,16 +52,6 @@
     <input type="submit" value="Submit" />
   </form>
 
-  <div class="message">
-    <h3><a href="form_handling_servlet">View Submitted Data</a></h3>
-    <% if (request.getParameter("error") != null) { %>
-    <p class="error-message"><%= request.getParameter("error") %></p>
-    <% } %>
-    <% if (request.getParameter("success") != null) { %>
-    <p class="success-message"><%= request.getParameter("success") %></p>
-    <% } %>
-  </div>
-
 </div>
 </body>
 </html>

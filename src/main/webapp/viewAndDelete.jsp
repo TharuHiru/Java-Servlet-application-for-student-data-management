@@ -1,63 +1,51 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
 <html>
 <head>
-    <title>Student Information</title>
-    <link rel="stylesheet" href="Styles/styles.css"> <!-- Link your stylesheet for styling -->
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <title>Student Data</title>
 </head>
 <body>
-
-<h2>Submitted Student Data</h2>
-
-<table>
-    <thead>
+<h2>Submitted Data</h2>
+<table border="1">
     <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Gender</th>
         <th>Date of Birth</th>
-        <th>Enrolled Year</th>
+        <th>Year</th>
         <th>Address</th>
         <th>Email</th>
         <th>Phone Number</th>
         <th>Grade</th>
     </tr>
-    </thead>
-    <tbody>
+
     <%
-        // Assuming you have a List or array of student data
-        // Replace 'studentList' with your actual data source
-        List<Student> studentList = (List<Student>) request.getAttribute("studentList");
-        for (Student student : studentList) {
+        List<HashMap<String, String>> studentList = (List<HashMap<String, String>>) request.getAttribute("studentList");
+        if (studentList != null) {
+            for (HashMap<String, String> student : studentList) {
     %>
     <tr>
-        <td><%= student.getName() %></td>
-        <td><%= student.getGender() %></td>
-        <td><%= student.getDateOfBirth() %></td>
-        <td><%= student.getYear() %></td>
-        <td><%= student.getAddress() %></td>
-        <td><%= student.getEmail() %></td>
-        <td><%= student.getPhoneNumber() %></td>
-        <td><%= student.getGrade() %></td>
+        <td><%= student.get("id") %></td>
+        <td><%= student.get("name") %></td>
+        <td><%= student.get("gender") %></td>
+        <td><%= student.get("dateOfBirth") %></td>
+        <td><%= student.get("year") %></td>
+        <td><%= student.get("address") %></td>
+        <td><%= student.get("email") %></td>
+        <td><%= student.get("phoneNumber") %></td>
+        <td><%= student.get("grade") %></td>
     </tr>
     <%
-        }
+        } // End of for loop
+    } else {
     %>
-    </tbody>
+    <tr>
+        <td colspan="9">No data available</td>
+    </tr>
+    <%
+        } // End of if statement
+    %>
 </table>
-
 </body>
 </html>

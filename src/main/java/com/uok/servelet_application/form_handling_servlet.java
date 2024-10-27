@@ -1,5 +1,6 @@
 package com.uok.servelet_application;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,13 +9,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 
 @WebServlet("/form_handling_servlet")
 public class form_handling_servlet extends HttpServlet {
@@ -66,12 +69,12 @@ public class form_handling_servlet extends HttpServlet {
     }
 
     @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String xmlFilePath = getServletContext().getRealPath("/WEB-INF/data.xml");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
+        List<HashMap<String, String>> studentList = new ArrayList<>();
         try {
             File xmlFile = new File(xmlFilePath);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -79,23 +82,31 @@ public class form_handling_servlet extends HttpServlet {
             Document document = builder.parse(xmlFile);
             document.getDocumentElement().normalize();
 
-
-            NodeList entries = document.getElementsByTagName("entry");
-
-            out.println("<html><body>");
-            out.println("<h2>Submitted Data</h2>");
-            out.println("<table border='1'><tr><th>ID</th><th>Data</th></tr>");
+            NodeList entries = document.getElementsByTagName("student");
 
             for (int i = 0; i < entries.getLength(); i++) {
                 Element entry = (Element) entries.item(i);
-                String id = entry.getElementsByTagName("id").item(0).getTextContent();
-                String data = entry.getElementsByTagName("data").item(0).getTextContent();
+                HashMap<String, String> student = new HashMap<>();
 
-                out.println("<tr><td>" + id + "</td><td>" + data + "</td></tr>");
+                student.put("id", entry.getElementsByTagName("id").item(0).getTextContent());
+                student.put("name", entry.getElementsByTagName("name").item(0).getTextContent());
+                student.put("gender", entry.getElementsByTagName("gender").item(0).getTextContent());
+                student.put("dateOfBirth", entry.getElementsByTagName("dateOfBirth").item(0).getTextContent());
+                student.put("year", entry.getElementsByTagName("year").item(0).getTextContent());
+                student.put("address", entry.getElementsByTagName("address").item(0).getTextContent());
+                student.put("email", entry.getElementsByTagName("email").item(0).getTextContent());
+                student.put("phoneNumber", entry.getElementsByTagName("phoneNumber").item(0).getTextContent());
+                student.put("grade", entry.getElementsByTagName("grade").item(0).getTextContent());
+
+                studentList.add(student);
             }
 
-            out.println("</table>");
-            out.println("</body></html>");
+            // Set the list as a request attribute
+            request.setAttribute("studentList", studentList);
+
+            // Forward to the JSP page
+            RequestDispatcher dispatcher = request.getRequestDispatcher("viewAndDelete.jsp");
+            dispatcher.forward(request, response);
         } catch (Exception e) {
             out.println("<p>Error reading XML data: " + e.getMessage() + "</p>");
         } finally {
