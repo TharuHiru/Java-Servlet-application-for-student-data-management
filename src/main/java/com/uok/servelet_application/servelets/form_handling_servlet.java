@@ -1,5 +1,7 @@
-package com.uok.servelet_application;
+package com.uok.servelet_application.servelets;
 
+import com.uok.servelet_application.Student;
+import com.uok.servelet_application.XMLHandler;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -58,20 +60,20 @@ public class form_handling_servlet extends HttpServlet {
         Student student = new Student(id, name, gender, dateofBirth, year, address, email, phoneNumber, grade);
 
         // Use getServletContext().getRealPath() to get the actual path for the XML file
-        String xmlFilePath = getServletContext().getRealPath("/WEB-INF/data.xml");
+        String xmlFilePath = getServletContext().getRealPath("/WEB-INF/Students.xml");
         System.out.println("XML File Path: " + xmlFilePath);
 
         // Save student data to XML
-        XMLHandler.saveDataToXML(student, xmlFilePath); // Update method to accept the Student object
+        XMLHandler.saveDataToXML(student, xmlFilePath);
 
         // Redirect to a success page
-        response.sendRedirect("index.jsp?success=Data submitted");
+        response.sendRedirect("SubmitData.jsp?success=Data submitted");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String xmlFilePath = getServletContext().getRealPath("/WEB-INF/data.xml");
+        String xmlFilePath = getServletContext().getRealPath("/WEB-INF/Students.xml");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         List<HashMap<String, String>> studentList = new ArrayList<>();

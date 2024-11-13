@@ -7,7 +7,7 @@
     <!--Defining the Servlet to handle the form submission-->
     <servlet>
         <servlet-name>Servlet_form_Handling</servlet-name>
-        <servlet-class>com.uok.servelet_application.form_handling_servlet</servlet-class>
+        <servlet-class>com.uok.servelet_application.servelets.form_handling_servlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

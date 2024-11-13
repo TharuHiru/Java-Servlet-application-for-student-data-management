@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Student Information Form</title>
-  <link rel="stylesheet" href="Styles/styles.css">
+  <link rel="stylesheet" href="Styles/submitPage.css">
 </head>
 <body>
 <div class="form-container">
