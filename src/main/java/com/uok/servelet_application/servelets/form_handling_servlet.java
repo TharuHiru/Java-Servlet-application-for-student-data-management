@@ -77,8 +77,9 @@ public class form_handling_servlet extends HttpServlet {
             throws ServletException, IOException {
         String xmlFilePath = getServletContext().getRealPath("/WEB-INF/Students.xml");
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        List<HashMap<String, String>> studentList = new ArrayList<>();
+        String action = request.getParameter("action");
+        String studentId = request.getParameter("id");
+
         try {
             File xmlFile = new File(xmlFilePath);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -87,6 +88,8 @@ public class form_handling_servlet extends HttpServlet {
             document.getDocumentElement().normalize();
 
             NodeList entries = document.getElementsByTagName("student");
+            HashMap<String, String> selectedStudent = null;
+            List<HashMap<String, String>> studentList = new ArrayList<>();
 
             for (int i = 0; i < entries.getLength(); i++) {
                 Element entry = (Element) entries.item(i);
@@ -98,23 +101,27 @@ public class form_handling_servlet extends HttpServlet {
                 student.put("dateOfBirth", entry.getElementsByTagName("dateOfBirth").item(0).getTextContent());
                 student.put("year", entry.getElementsByTagName("year").item(0).getTextContent());
                 student.put("address", entry.getElementsByTagName("address").item(0).getTextContent());
+                student.put("medium", entry.getElementsByTagName("medium").item(0).getTextContent());
                 student.put("email", entry.getElementsByTagName("email").item(0).getTextContent());
                 student.put("phoneNumber", entry.getElementsByTagName("phoneNumber").item(0).getTextContent());
                 student.put("grade", entry.getElementsByTagName("grade").item(0).getTextContent());
 
+                if (action != null && action.equals("view") && student.get("id").equals(studentId)) {
+                    selectedStudent = student;
+                }
+
                 studentList.add(student);
             }
 
-            // Set the list as a request attribute
+            if (selectedStudent != null) {
+                request.setAttribute("selectedStudent", selectedStudent);
+            }
             request.setAttribute("studentList", studentList);
-
-            // Forward to the JSP page
             RequestDispatcher dispatcher = request.getRequestDispatcher("viewAndDelete.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {
-            out.println("<p>Error reading XML data: " + e.getMessage() + "</p>");
-        } finally {
-            out.close();
+            response.getWriter().println("<p>Error: " + e.getMessage() + "</p>");
         }
     }
+
 }
