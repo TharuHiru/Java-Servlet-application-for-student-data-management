@@ -10,7 +10,7 @@
 <div class="form-container">
     <h2>Submit Data</h2>
     <form action="form_handling_servlet" method="post">
-
+        <input type="hidden" name="action" value="Add">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required />
 

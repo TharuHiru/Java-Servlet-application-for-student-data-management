@@ -7,12 +7,22 @@
     <!--Defining the Servlet to handle the form submission-->
     <servlet>
         <servlet-name>Servlet_form_Handling</servlet-name>
-        <servlet-class>com.uok.servelet_application.servelets.form_handling_servlet</servlet-class>
+        <servlet-class>com.uok.servelet_application.servlets.AddStudentServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Servlet_form_Handling</servlet-name>
-        <url-pattern>/welcome</url-pattern>
+        <url-pattern>/welcome_handle</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Servlet_UpdateAndDelete</servlet-name>
+        <servlet-class>com.uok.servelet_application.servlets.UpdateAndDeleteServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Servlet_UpdateAndDelete</servlet-name>
+        <url-pattern>/welcome_edit</url-pattern>
     </servlet-mapping>
 
 </web-app>

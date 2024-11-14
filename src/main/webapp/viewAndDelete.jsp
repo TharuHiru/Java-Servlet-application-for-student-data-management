@@ -49,7 +49,7 @@
                 <td><%= student.getOrDefault("phoneNumber", "") %></td>
                 <td><%= student.getOrDefault("grade", "") %></td>
                 <td>
-                    <a href="form_handling_servlet?action=view&id=<%= student.get("id") %>">
+                    <a href="UpdateAndDelete_servlet?action=view&id=<%= student.get("id") %>">
                         <i class="fa fa-eye" style="color: darkslategray;"></i>
                     </a>
                 </td>
@@ -73,7 +73,8 @@
         <%
             HashMap<String, String> selectedStudent = (HashMap<String, String>) request.getAttribute("selectedStudent");
         %>
-        <form action="form_handling_servlet" method="post">
+        <form action="UpdateAndDelete_servlet" method="post">
+            <input type="hidden" name="action" value="Update">
             <label for="id">Student ID</label>
             <input type="text" id="id" name="id" value="<%= selectedStudent != null ? selectedStudent.get("id") : "" %>" required readonly/>
 

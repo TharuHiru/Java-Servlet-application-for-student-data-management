@@ -10,7 +10,7 @@
     <h1>Student Data <br>management System</h1>
     <hr >
     <button onclick="window.location.href='SubmitData.jsp'">Add Student</button>
-    <button onclick="window.location.href='form_handling_servlet'">Edit Student Details</button>
+    <button onclick="window.location.href='UpdateAndDelete_servlet'">Edit Student Details</button>
 </div>
 </body>
 </html>
