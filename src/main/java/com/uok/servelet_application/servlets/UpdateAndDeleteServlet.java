@@ -185,7 +185,8 @@ public class UpdateAndDeleteServlet extends HttpServlet {
 
                 // Handle delete action
                 if ("delete".equals(action) && studentId != null) {
-                    boolean isDeleted = deleteStudentFromXML(xmlFilePath, studentId);
+                    boolean isDeleted = deleteStudentFromXML(xmlFilePath, studentId, request, response);
+
                     if (isDeleted) {
                         response.getWriter().println("<p>Student deleted successfully.</p>");
                     } else {
@@ -207,7 +208,7 @@ public class UpdateAndDeleteServlet extends HttpServlet {
         }
 
         // Method to delete a student from the XML file
-        private boolean deleteStudentFromXML(String xmlFilePath, String studentId) {
+        private boolean deleteStudentFromXML(String xmlFilePath, String studentId, HttpServletRequest request, HttpServletResponse response) {
             try {
                 File xmlFile = new File(xmlFilePath);
                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -234,6 +235,31 @@ public class UpdateAndDeleteServlet extends HttpServlet {
                             StreamResult result = new StreamResult(new File(xmlFilePath));
                             transformer.transform(source, result);
 
+                            // Re-read the XML and update the student list
+                            List<HashMap<String, String>> studentList = new ArrayList<>();
+                            NodeList newEntries = document.getElementsByTagName("student");
+
+                            for (int j = 0; j < newEntries.getLength(); j++) {
+                                Element entry = (Element) newEntries.item(j);
+                                HashMap<String, String> student = new HashMap<>();
+                                student.put("id", entry.getElementsByTagName("id").item(0).getTextContent());
+                                student.put("name", entry.getElementsByTagName("name").item(0).getTextContent());
+                                student.put("gender", entry.getElementsByTagName("gender").item(0).getTextContent());
+                                student.put("dateOfBirth", entry.getElementsByTagName("dateOfBirth").item(0).getTextContent());
+                                student.put("year", entry.getElementsByTagName("year").item(0).getTextContent());
+                                student.put("address", entry.getElementsByTagName("address").item(0).getTextContent());
+                                student.put("medium", entry.getElementsByTagName("medium").item(0).getTextContent());
+                                student.put("email", entry.getElementsByTagName("email").item(0).getTextContent());
+                                student.put("phoneNumber", entry.getElementsByTagName("phoneNumber").item(0).getTextContent());
+                                student.put("grade", entry.getElementsByTagName("grade").item(0).getTextContent());
+                                studentList.add(student);
+                            }
+
+                            // Set the updated student list in the request attribute
+                            request.setAttribute("studentList", studentList);
+                            request.setAttribute("successMessage", "Student deleted successfully.");
+                            // Forward to the view and delete page
+                            request.getRequestDispatcher("viewAndDelete.jsp").forward(request, response);
                             return true; // Deletion successful
                         }
                     }
@@ -243,4 +269,5 @@ public class UpdateAndDeleteServlet extends HttpServlet {
             }
             return false; // Deletion failed
         }
-    }
+
+}
