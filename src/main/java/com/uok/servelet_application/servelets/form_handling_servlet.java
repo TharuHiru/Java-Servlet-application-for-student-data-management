@@ -1,7 +1,7 @@
 package com.uok.servelet_application.servelets;
 
-import com.uok.servelet_application.Student;
-import com.uok.servelet_application.XMLHandler;
+import com.uok.servelet_application.javaClasses.Student;
+import com.uok.servelet_application.javaClasses.writeXML;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -38,6 +38,7 @@ public class form_handling_servlet extends HttpServlet {
         String dateofBirth = request.getParameter("dateOfBirth");
         String year = request.getParameter("year");
         String address = request.getParameter("address");
+        String medium = request.getParameter("medium");
         String email = request.getParameter("email");
         String phoneNumber = request.getParameter("phoneNumber");
         String grade = request.getParameter("grade");
@@ -49,6 +50,7 @@ public class form_handling_servlet extends HttpServlet {
                 year == null || year.isEmpty() ||
                 address == null || address.isEmpty() ||
                 email == null || email.isEmpty() ||
+                medium == null || medium.isEmpty() ||
                 phoneNumber == null || phoneNumber.isEmpty() ||
                 grade == null || grade.isEmpty()) {
 
@@ -57,14 +59,14 @@ public class form_handling_servlet extends HttpServlet {
         }
 
         // Create a new Student object
-        Student student = new Student(id, name, gender, dateofBirth, year, address, email, phoneNumber, grade);
+        Student student = new Student(id, name, gender, dateofBirth, year, address, email, phoneNumber, grade , medium);
 
-        // Use getServletContext().getRealPath() to get the actual path for the XML file
+        // path of the xml file
         String xmlFilePath = getServletContext().getRealPath("/WEB-INF/Students.xml");
         System.out.println("XML File Path: " + xmlFilePath);
 
         // Save student data to XML
-        XMLHandler.saveDataToXML(student, xmlFilePath);
+        writeXML.saveDataToXML(student, xmlFilePath);
 
         // Redirect to a success page
         response.sendRedirect("SubmitData.jsp?success=Data submitted");

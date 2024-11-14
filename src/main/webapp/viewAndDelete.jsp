@@ -26,6 +26,7 @@
                 <th>Year</th>
                 <th>Address</th>
                 <th>Email</th>
+                <th>Medium</th>
                 <th>Phone Number</th>
                 <th>Grade</th>
                 <th>Actions</th>
@@ -44,6 +45,7 @@
                 <td><%= student.get("year") %></td>
                 <td><%= student.get("address") %></td>
                 <td><%= student.get("email") %></td>
+                <td><%= student.get("medium") %></td>
                 <td><%= student.get("phoneNumber") %></td>
                 <td><%= student.get("grade") %></td>
                 <td>
@@ -89,12 +91,12 @@
             <label for="year">Enrolled Year</label>
             <select id="year" name="year" required>
                 <option value="">Select Year</option>
-                <option value="1998">1998</option>
-                <option value="1999">1999</option>
-                <option value="2000">2000</option>
-                <option value="2001">2001</option>
-                <option value="2002">2002</option>
-                <option value="2003">2003</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
             </select>
 
             <label for="address">Address</label>
@@ -102,6 +104,13 @@
 
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required />
+
+            <label for="medium">Enrolled Year</label>
+            <select id="medium" name="medium" required>
+                <option value="">Select the medium</option>
+                <option value="Sinhala">1998</option>
+                <option value="English">1999</option>
+            </select>
 
             <label for="phoneNumber">Phone Number</label>
             <input type="number" id="phoneNumber" name="phoneNumber" required />

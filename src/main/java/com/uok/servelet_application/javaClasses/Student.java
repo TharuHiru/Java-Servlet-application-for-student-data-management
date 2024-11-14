@@ -1,4 +1,4 @@
-package com.uok.servelet_application;
+package com.uok.servelet_application.javaClasses;
 
 public class Student {
     private String id;
@@ -10,8 +10,10 @@ public class Student {
     private String email;
     private String phoneNumber;
     private String grade;
+    private String medium;
 
-    public Student(String id, String name, String gender, String dateOfBirth, String year, String address, String email, String phoneNumber, String grade) {
+
+    public Student(String id, String name, String gender, String dateOfBirth, String year, String address, String email, String phoneNumber, String grade , String medium) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -21,6 +23,7 @@ public class Student {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.grade = grade;
+        this.medium = medium;
     }
 
     // Getters for each field
@@ -58,5 +61,13 @@ public class Student {
 
     public String getGrade() {
         return grade;
+    }
+
+    public String getMedium() {
+        return medium;
+    }
+
+    public void setMedium(String medium) {
+        this.medium = medium;
     }
 }

@@ -14,7 +14,7 @@
 
 .form-container {
     width: 35%;
-    padding: 20px;
+    padding: 40px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
@@ -24,8 +24,8 @@ table th {
     background-color: #183c18;
     color: white;
     padding: 10px;
-    text-align: left;
     border-bottom: 2px solid #ccc;
+    text-align: center;
 }
 
 table td {
@@ -50,6 +50,10 @@ table tr:hover {
     margin-bottom: 10px;
 }
 
+.topic{
+    color :#183c18;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="date"],
@@ -63,12 +67,15 @@ select {
 }
 
 input[type="submit"] {
-    width: 100%;
+    width: 49%;
     padding: 10px;
     background-color: #183c18;
     color: white;
     border: none;
     cursor: pointer;
+}
+#delete{
+    background-color: red;
 }
 
 input[type="submit"]:hover {

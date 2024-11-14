@@ -22,19 +22,13 @@ h2 {
     margin-bottom: 20px;
     margin-top: 20px;
 }
-.gender-options {
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically (if needed) */
-    margin: 10px 0; /* Add some margin above and below */
-}
+
 label {
     font-weight: bold;
     margin-top: 10px;
 }
 
 input[type="text"],
-input[type="submit"],
 input[type="date"]
 {
     width: 100%;
@@ -45,7 +39,7 @@ input[type="date"]
     box-sizing: border-box;
 }
 
-#email, #phoneNumber , #year{
+#email, #phoneNumber ,#year , #medium{
     width: 100%;
     padding: 8px;
     margin: 8px 0 16px 0;
@@ -55,7 +49,7 @@ input[type="date"]
 }
 
 input[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #183c18;
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -63,7 +57,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #102510;
+    background-color: #45a049;
 }
 
 .message {

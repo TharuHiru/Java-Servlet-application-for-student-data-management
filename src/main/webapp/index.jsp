@@ -9,8 +9,8 @@
 <div class="button-container">
     <h1>Student Data <br>management System</h1>
     <hr >
-    <button onclick="window.location.href='SubmitData.jsp'">Submit Data</button>
-    <button onclick="window.location.href='form_handling_servlet'">Edit and view</button>
+    <button onclick="window.location.href='SubmitData.jsp'">Add Student</button>
+    <button onclick="window.location.href='form_handling_servlet'">Edit Student Details</button>
 </div>
 </body>
 </html>
