@@ -122,12 +122,15 @@
             <label for="grade">Grade</label>
             <input type="text" id="grade" name="grade" value="<%= selectedStudent != null ? selectedStudent.get("grade") : "" %>" required/>
 
+
             <input type="submit" value="Update" />
+            <div class="action-buttons">
+                <a href="UpdateAndDelete_servlet?action=delete&id=<%= selectedStudent != null ? selectedStudent.get("id") : "" %>" class="delete-button">Delete</a>
+
+            </div>
         </form>
     </div>
 
-
 </div>
-
 </body>
 </html>

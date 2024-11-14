@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -107,7 +108,7 @@ public class UpdateAndDeleteServlet extends HttpServlet {
                 StreamResult result = new StreamResult(xmlFile);
                 transformer.transform(source, result);
 
-                // After updating,read the XML again to update the table
+                // After updating,read the X
                 List<HashMap<String, String>> studentList = new ArrayList<>();
                 NodeList entries = document.getElementsByTagName("student");
 
@@ -139,56 +140,107 @@ public class UpdateAndDeleteServlet extends HttpServlet {
             response.sendRedirect("index.jsp?error=An error occurred: " + e.getMessage());
         }
     }
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String xmlFilePath = getServletContext().getRealPath("/WEB-INF/Students.xml");
-        response.setContentType("text/html");
-        String action = request.getParameter("action");
-        String studentId = request.getParameter("id");
 
-        try {
-            File xmlFile = new File(xmlFilePath);
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(xmlFile);
-            document.getDocumentElement().normalize();
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                throws ServletException, IOException {
+            String xmlFilePath = getServletContext().getRealPath("/WEB-INF/Students.xml");
+            response.setContentType("text/html");
+            String action = request.getParameter("action");
+            String studentId = request.getParameter("id");
 
-            NodeList entries = document.getElementsByTagName("student");
-            HashMap<String, String> selectedStudent = null;
-            List<HashMap<String, String>> studentList = new ArrayList<>();
+            try {
+                File xmlFile = new File(xmlFilePath);
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document document = builder.parse(xmlFile);
+                document.getDocumentElement().normalize();
 
-            for (int i = 0; i < entries.getLength(); i++) {
-                Element entry = (Element) entries.item(i);
-                HashMap<String, String> student = new HashMap<>();
+                NodeList entries = document.getElementsByTagName("student");
+                HashMap<String, String> selectedStudent = null;
+                List<HashMap<String, String>> studentList = new ArrayList<>();
 
-                student.put("id", entry.getElementsByTagName("id").item(0).getTextContent());
-                student.put("name", entry.getElementsByTagName("name").item(0).getTextContent());
-                student.put("gender", entry.getElementsByTagName("gender").item(0).getTextContent());
-                student.put("dateOfBirth", entry.getElementsByTagName("dateOfBirth").item(0).getTextContent());
-                student.put("year", entry.getElementsByTagName("year").item(0).getTextContent());
-                student.put("address", entry.getElementsByTagName("address").item(0).getTextContent());
-                student.put("medium", entry.getElementsByTagName("medium").item(0).getTextContent());
-                student.put("email", entry.getElementsByTagName("email").item(0).getTextContent());
-                student.put("phoneNumber", entry.getElementsByTagName("phoneNumber").item(0).getTextContent());
-                student.put("grade", entry.getElementsByTagName("grade").item(0).getTextContent());
+                // Iterate through the XML entries
+                for (int i = 0; i < entries.getLength(); i++) {
+                    Element entry = (Element) entries.item(i);
+                    HashMap<String, String> student = new HashMap<>();
 
-                if (action != null && action.equals("view") && student.get("id").equals(studentId)) {
-                    selectedStudent = student;
+                    student.put("id", entry.getElementsByTagName("id").item(0).getTextContent());
+                    student.put("name", entry.getElementsByTagName("name").item(0).getTextContent());
+                    student.put("gender", entry.getElementsByTagName("gender").item(0).getTextContent());
+                    student.put("dateOfBirth", entry.getElementsByTagName("dateOfBirth").item(0).getTextContent());
+                    student.put("year", entry.getElementsByTagName("year").item(0).getTextContent());
+                    student.put("address", entry.getElementsByTagName("address").item(0).getTextContent());
+                    student.put("medium", entry.getElementsByTagName("medium").item(0).getTextContent());
+                    student.put("email", entry.getElementsByTagName("email").item(0).getTextContent());
+                    student.put("phoneNumber", entry.getElementsByTagName("phoneNumber").item(0).getTextContent());
+                    student.put("grade", entry.getElementsByTagName("grade").item(0).getTextContent());
+
+                    // Check if the action is "view" and the ID matches
+                    if ("view".equals(action) && student.get("id").equals(studentId)) {
+                        selectedStudent = student;
+                    }
+
+                    studentList.add(student);
                 }
 
-                studentList.add(student);
-            }
+                // Handle delete action
+                if ("delete".equals(action) && studentId != null) {
+                    boolean isDeleted = deleteStudentFromXML(xmlFilePath, studentId);
+                    if (isDeleted) {
+                        response.getWriter().println("<p>Student deleted successfully.</p>");
+                    } else {
+                        response.getWriter().println("<p>Failed to delete student. Student not found.</p>");
+                    }
+                    response.sendRedirect("viewAndDelete.jsp");
+                    return;
+                }
 
-            if (selectedStudent != null) {
-                request.setAttribute("selectedStudent", selectedStudent);
+                if (selectedStudent != null) {
+                    request.setAttribute("selectedStudent", selectedStudent);
+                }
+                request.setAttribute("studentList", studentList);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("viewAndDelete.jsp");
+                dispatcher.forward(request, response);
+            } catch (Exception e) {
+                response.getWriter().println("<p>Error: " + e.getMessage() + "</p>");
             }
-            request.setAttribute("studentList", studentList);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("viewAndDelete.jsp");
-            dispatcher.forward(request, response);
-        } catch (Exception e) {
-            response.getWriter().println("<p>Error: " + e.getMessage() + "</p>");
+        }
+
+        // Method to delete a student from the XML file
+        private boolean deleteStudentFromXML(String xmlFilePath, String studentId) {
+            try {
+                File xmlFile = new File(xmlFilePath);
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                Document document = builder.parse(xmlFile);
+                document.getDocumentElement().normalize();
+
+                NodeList entries = document.getElementsByTagName("student");
+
+                for (int i = 0; i < entries.getLength(); i++) {
+                    Node studentNode = entries.item(i);
+                    if (studentNode.getNodeType() == Node.ELEMENT_NODE) {
+                        Element studentElement = (Element) studentNode;
+                        String id = studentElement.getElementsByTagName("id").item(0).getTextContent();
+
+                        if (id.equals(studentId)) {
+                            // Remove the student element
+                            studentElement.getParentNode().removeChild(studentElement);
+
+                            // Save the updated XML file
+                            TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                            Transformer transformer = transformerFactory.newTransformer();
+                            DOMSource source = new DOMSource(document);
+                            StreamResult result = new StreamResult(new File(xmlFilePath));
+                            transformer.transform(source, result);
+
+                            return true; // Deletion successful
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false; // Deletion failed
         }
     }
-
-}

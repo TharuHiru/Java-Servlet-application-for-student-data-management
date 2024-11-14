@@ -74,10 +74,16 @@ input[type="submit"] {
     border: none;
     cursor: pointer;
 }
-#delete{
-    background-color: red;
+
+input[type="submit"] :hover {
+    background-color: #4ccd4c;
 }
 
-input[type="submit"]:hover {
-    background-color: #45a049;
+.delete-button{
+    background-color: red;
+    width: 49%;
+    padding: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
