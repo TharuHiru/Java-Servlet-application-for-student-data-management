@@ -10,15 +10,15 @@
 </head>
 <body>
 
-<h2>Student Management</h2>
+<h1>Student Management</h1>
 
 <div class="flex-container">
 
     <!-- Container for the Student Data Table -->
     <div class="table-container">
-        <h3>Student Information</h3>
         <table>
             <tr>
+                <th></th>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Gender</th>
@@ -29,7 +29,6 @@
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Grade</th>
-                <th>Actions</th>
             </tr>
 
             <%
@@ -38,6 +37,11 @@
                     for (HashMap<String, String> student : studentList) {
             %>
             <tr>
+                <td>
+                    <a href="UpdateAndDelete_servlet?action=view&id=<%= student.get("id") %>">
+                        <i class="fa fa-eye" style="color: darkslategray;"></i>
+                    </a>
+                </td>
                 <td><%= student.getOrDefault("id", "") %></td>
                 <td><%= student.getOrDefault("name", "") %></td>
                 <td><%= student.getOrDefault("gender", "") %></td>
@@ -48,11 +52,7 @@
                 <td><%= student.getOrDefault("email", "") %></td>
                 <td><%= student.getOrDefault("phoneNumber", "") %></td>
                 <td><%= student.getOrDefault("grade", "") %></td>
-                <td>
-                    <a href="UpdateAndDelete_servlet?action=view&id=<%= student.get("id") %>">
-                        <i class="fa fa-eye" style="color: darkslategray;"></i>
-                    </a>
-                </td>
+
             </tr>
             <%
                 }
@@ -69,7 +69,9 @@
 
     <!-- Container for the Student Form -->
     <div class="form-container">
-        <h3>View Student</h3>
+        <h2>View Student</h2>
+        <hr>
+        <br>
         <%
             HashMap<String, String> selectedStudent = (HashMap<String, String>) request.getAttribute("selectedStudent");
         %>
@@ -122,12 +124,11 @@
             <label for="grade">Grade</label>
             <input type="text" id="grade" name="grade" value="<%= selectedStudent != null ? selectedStudent.get("grade") : "" %>" required/>
 
-
+<div id = "buttons">
             <input type="submit" value="Update" />
-            <div class="action-buttons">
-                <a href="UpdateAndDelete_servlet?action=delete&id=<%= selectedStudent != null ? selectedStudent.get("id") : "" %>" class="delete-button">Delete</a>
+            <a href="UpdateAndDelete_servlet?action=delete&id=<%= selectedStudent != null ? selectedStudent.get("id") : "" %>" class="delete-button">Delete</a>
+</div>
 
-            </div>
         </form>
     </div>
 
