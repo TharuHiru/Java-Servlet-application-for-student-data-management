@@ -94,9 +94,12 @@
             <label for="year">Enrolled Year</label>
             <select id="year" name="year" required>
                 <option value="">Select Year</option>
-                <option value="1998" <%= selectedStudent != null && "1998".equals(selectedStudent.get("year")) ? "selected" : "" %>>1998</option>
-                <option value="1999" <%= selectedStudent != null && "1999".equals(selectedStudent.get("year")) ? "selected" : "" %>>1999</option>
-                <option value="2000" <%= selectedStudent != null && "2000".equals(selectedStudent.get("year")) ? "selected" : "" %>>2000</option>
+                <option value="2018" <%= selectedStudent != null && "2018".equals(selectedStudent.get("year")) ? "selected" : "" %>>2018</option>
+                <option value="2019" <%= selectedStudent != null && "2019".equals(selectedStudent.get("year")) ? "selected" : "" %>>2019</option>
+                <option value="2020" <%= selectedStudent != null && "2020".equals(selectedStudent.get("year")) ? "selected" : "" %>>2020</option>
+                <option value="2021" <%= selectedStudent != null && "2021".equals(selectedStudent.get("year")) ? "selected" : "" %>>2021</option>
+                <option value="2022" <%= selectedStudent != null && "2022".equals(selectedStudent.get("year")) ? "selected" : "" %>>2022</option>
+                <option value="2023" <%= selectedStudent != null && "2023".equals(selectedStudent.get("year")) ? "selected" : "" %>>2023</option>
             </select>
 
             <label for="address">Address</label>
