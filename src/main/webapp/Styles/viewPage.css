@@ -5,6 +5,20 @@
     gap: 20px;
     margin: 20px;
 }
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2px;
+    border: 1px solid #acacac;
+}
+.new-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2px;
+    margin: 2px;
+}
 
 .table-container {
     width: 60%;
@@ -99,4 +113,14 @@ input[type="submit"] :hover {
     border: none;
     cursor: pointer;
     text-align: center; /* Center the content inside the button */
+}
+
+#searchButton{
+    background-color: white;
+    color: #183c18;
+    border: 1px solid #183c18;
+    cursor: pointer;
+}
+#searchButton:hover{
+    background-color:lightgreen;
 }

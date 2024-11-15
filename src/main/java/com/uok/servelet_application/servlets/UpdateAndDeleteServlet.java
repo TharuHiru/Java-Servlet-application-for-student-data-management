@@ -130,6 +130,7 @@ public class UpdateAndDeleteServlet extends HttpServlet {
 
                 // Set the updated student list in the request attribute
                 request.setAttribute("studentList", studentList);
+                request.setAttribute("success", "Data submitted");
                 request.setAttribute("successMessage", "Student details updated successfully.");
                 request.getRequestDispatcher("viewAndDelete.jsp").forward(request, response);
 

@@ -11,12 +11,33 @@
 <body>
 
 <h1>Student Management</h1>
-
 <div class="flex-container">
 
     <!-- Container for the Student Data Table -->
     <div class="table-container">
-        <table>
+            <div class="search-container">
+                <form action="" method="get">
+                    <div class="new-container">
+                        <input type="text" name="searchTxt" id="searchTxt" placeholder="Search " oninput="filterTable()"/>
+
+                        <select id="genderFilter" onchange="filterTable()" >
+                            <option value="" disabled selected>Gender</option>
+                            <option value="">All</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+
+                        <select id="mediumFilter" onchange="filterTable()" placeholder = "Medium">
+                            <option value="" disabled selected>Medium</option>
+                            <option value="">All</option>
+                            <option value="Sinhala">Sinhala</option>
+                            <option value="English">English</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+        <table id = "studentDetail">
             <tr>
                 <th></th>
                 <th>ID</th>
@@ -133,5 +154,57 @@
     </div>
 
 </div>
+
+<script>
+    function filterTable() {
+        var input, filter, genderFilter, mediumFilter, table, tr, td, i, txtValue;
+
+        // Get the search text and convert it to uppercase for case-insensitive comparison
+        input = document.getElementById("searchTxt");
+        filter = input.value.toUpperCase();
+
+        // Get selected gender and medium filter values
+        genderFilter = document.getElementById("genderFilter").value.toUpperCase();
+        mediumFilter = document.getElementById("mediumFilter").value.toUpperCase();
+
+        // Get the table and rows
+        table = document.getElementById("studentDetail");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows (skip the header row)
+        for (i = 1; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            if (td) {
+                // Get values from columns: ID, Name, Address, Email, Phone Number, Gender, Medium
+                var id = td[1].textContent || td[1].innerText;
+                var name = td[2].textContent || td[2].innerText;
+                var address = td[6].textContent || td[6].innerText;
+                var email = td[8].textContent || td[8].innerText;
+                var phone = td[9].textContent || td[9].innerText;
+                var gender = td[3].textContent || td[3].innerText;
+                var medium = td[7].textContent || td[7].innerText;
+
+                // Check if the row matches the search criteria and filter conditions
+                var matchesSearch =
+                    id.toUpperCase().indexOf(filter) > -1 ||
+                    name.toUpperCase().indexOf(filter) > -1 ||
+                    address.toUpperCase().indexOf(filter) > -1 ||
+                    email.toUpperCase().indexOf(filter) > -1 ||
+                    phone.toUpperCase().indexOf(filter) > -1;
+
+                var matchesGender = genderFilter === "" || gender.toUpperCase() === genderFilter;
+                var matchesMedium = mediumFilter === "" || medium.toUpperCase() === mediumFilter;
+
+                // Show the row if it matches search and filter conditions, else hide it
+                if (matchesSearch && matchesGender && matchesMedium) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
 </body>
 </html>
