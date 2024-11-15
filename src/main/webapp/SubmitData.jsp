@@ -5,10 +5,15 @@
     <link rel="stylesheet" href="Styles/submitPage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 <div class="form-container">
-    <h2>Submit Data</h2>
+    <a href="index.jsp" class="back-arrow" style="color: #183c18">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <h2 class = "topic_Name">Submit Data</h2>
+    <hr>
     <form action="form_handling_servlet" method="post">
         <input type="hidden" name="action" value="Add">
         <label for="name">Name</label>

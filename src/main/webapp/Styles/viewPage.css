@@ -9,14 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 2px;
-    border: 1px solid #acacac;
-}
-.new-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2px;
+    gap: 5px;
     margin: 2px;
 }
 
@@ -24,6 +17,31 @@
     width: 60%;
     max-height: 100%;
     overflow: auto;
+}
+.main_topic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2px;
+    margin: 2px;
+    padding: 15px;
+    background-color: #abd5ac;
+}
+h1{
+    color:#183c18 ;
+}
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #183c18;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }
 
 label{
@@ -33,11 +51,13 @@ label{
 .form-container {
     width: 35%;
     padding-top: 10px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 60px;
+    padding-right: 60px;
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-left: 10px;
 }
 
 table th {
@@ -87,8 +107,8 @@ select {
 }
 
 #buttons {
-    display: flex; /* Use flexbox to align buttons horizontally */
-    align-items: center; /* Optional: vertically align buttons */
+    display: flex;
+    align-items: center;
 }
 input[type="submit"] {
     width: 49%;
@@ -112,15 +132,7 @@ input[type="submit"] :hover {
     color: white;
     border: none;
     cursor: pointer;
-    text-align: center; /* Center the content inside the button */
+    text-align: center;
 }
 
-#searchButton{
-    background-color: white;
-    color: #183c18;
-    border: 1px solid #183c18;
-    cursor: pointer;
-}
-#searchButton:hover{
-    background-color:lightgreen;
-}
+

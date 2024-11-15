@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #dad5d5;
+    background: url("img.png") no-repeat center center fixed;
     color: black;
     display: flex;
     justify-content: center;
@@ -12,11 +12,12 @@ body {
     background-color: #ffffff;
     padding: 20px 40px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
     max-width: 400px;
+    margin: 30px;
 }
 
-h2 {
+.topic_Name {
     color: #102510;
     text-align: center;
     margin-bottom: 20px;
@@ -54,6 +55,9 @@ input[type="submit"] {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
 }
 
 input[type="submit"]:hover {

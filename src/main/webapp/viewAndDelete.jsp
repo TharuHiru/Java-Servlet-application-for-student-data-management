@@ -2,24 +2,23 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link rel="stylesheet" href="Styles/viewPage.css">
+<link rel="stylesheet" href="Styles/viewPage.css?">
 
 <html>
 <head>
     <title>Student Data</title>
 </head>
 <body>
-
-<h1>Student Management</h1>
+<div class="main_topic">
+    <h1>Student Management</h1>
+    <a href="index.jsp" id="back" class="button">BACK</a>
+</div>
 <div class="flex-container">
 
     <!-- Container for the Student Data Table -->
     <div class="table-container">
             <div class="search-container">
-                <form action="" method="get">
-                    <div class="new-container">
                         <input type="text" name="searchTxt" id="searchTxt" placeholder="Search " oninput="filterTable()"/>
-
                         <select id="genderFilter" onchange="filterTable()" >
                             <option value="" disabled selected>Gender</option>
                             <option value="">All</option>
@@ -33,8 +32,6 @@
                             <option value="Sinhala">Sinhala</option>
                             <option value="English">English</option>
                         </select>
-                    </div>
-                </form>
             </div>
 
         <table id = "studentDetail">
