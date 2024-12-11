@@ -2,25 +2,26 @@
 
 # Student Data Management Servlet Application
 
-A Java Servlet and JSP-based web application for managing student data with functionality to add, update, and delete student records. The application features a responsive and aesthetically pleasing user interface and stores data in an XML document. 
+A Java Servlet, JSP, and Maven-based web application for managing student data with functionality to add, update, and delete student records. The application features a responsive and aesthetically pleasing user interface and stores data in an XML document.
 
 ## Features
 
-- **Add Students**: A servlet and JSP page to add student records.
-- **Update/Delete Students**: Another servlet and JSP page for updating and deleting student records.
-- **View/Search and filter"** : View saved data in tabular format , search and filter details
-- **Data Storage**: Student data is stored in an XML document.
-- **Responsive UI**: User-friendly and responsive interface using modern web design.
-- **Apache Tomcat**: Hosted on the Apache Tomcat server.
-- **Development Environment**: Developed using IntelliJ IDEA.
+- 🔄 **Add Students**: A servlet and JSP page to add student records.
+- ✏️ **Update/Delete Students**: Another servlet and JSP page for updating and deleting student records.
+- 📄 **Data Storage**: Student data is stored in an XML document.
+- 🎨 **Responsive UI**: User-friendly and responsive interface using modern web design.
+- 🚀 **Apache Tomcat**: Hosted on the Apache Tomcat server.
+- ⚙️ **Development Environment**: Developed using IntelliJ IDEA.
+- 📚 **Maven Integration**: Project dependencies managed using Maven.
 
 ## Technologies Used
 
-- **Backend**: Java Servlets and JSP
-- **Frontend**: HTML, CSS, and Javascript (for responsive UI)
-- **Data Storage**: XML
-- **Server**: Apache Tomcat
-- **IDE**: IntelliJ IDEA
+- ☕ **Backend**: Java Servlets and JSP
+- 🌐 **Frontend**: HTML, CSS, and Bootstrap (for responsive UI)
+- 📃 **Data Storage**: XML
+- ⚛️ **Build Tool**: Maven
+- 🚪 **Server**: Apache Tomcat
+- 🔧 **IDE**: IntelliJ IDEA
 
 ## Setup and Installation
 
@@ -29,6 +30,7 @@ A Java Servlet and JSP-based web application for managing student data with func
 1. Java Development Kit (JDK) installed
 2. Apache Tomcat server installed
 3. IntelliJ IDEA (or any preferred IDE)
+4. Maven installed
 
 ### Steps
 
@@ -87,16 +89,15 @@ The student data is stored in `Students.xml` file with the following structure:
 ![image](https://github.com/user-attachments/assets/6b0b0047-0982-472d-9d7f-f46f6c96cae0)
 
 
-### Update/Delete Student
+### View/Update/Delete Student
 ![image](https://github.com/user-attachments/assets/b0d325b1-06c5-4fc6-be60-2778d37f7306)
 
 
 ## Usage
 
-1. Navigate to the home page.
-2. Use the "Add Student" page to create new student records.
-3. Edit or delete records from the "Manage Students" page.
-
+1. 🔍 Navigate to the home page.
+2. ➕ Use the "Add Student" page to create new student records.
+3. ✏️ Edit or delete records from the "view and Edit" page.
 ## Contributing
 
 Contributions are welcome! Please fork this repository and submit a pull request for review.
