@@ -94,7 +94,6 @@ The student data is stored in `Students.xml` file with the following structure:
 
 
 ## Usage
-
 1. 🔍 Navigate to the home page.
 2. ➕ Use the "Add Student" page to create new student records.
 3. ✏️ Edit or delete records from the "view and Edit" page.
